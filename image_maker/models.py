@@ -48,21 +48,21 @@ class Imag(models.Model):
 
 
 		with urllib.request.urlopen(URL) as url:
-		    with open('back.jpg', 'wb') as f:
+		    with open('image_maker/static/image_maker/images/back.jpg', 'wb') as f:
 		        f.write(url.read())
 
 		ironman = Image.open('image_maker/static/image_maker/images/Crime_Moldova_trans.png', 'r')
-		bg = Image.open('back.jpg', 'r')
+		bg = Image.open('image_maker/static/image_maker/images/back.jpg', 'r')
 		pb = bg.resize((1368, 627))
 		pp = pb.point(lambda x: x*0.38)
 		text_img = Image.new('RGBA', (1200, 627), (0, 0, 0, 0))
 		text_img.paste(pp, (-84, 0))
 		text_img.paste(ironman, (0, 0), mask=ironman)
-		text_img.save("result.png", format="png")
+		text_img.save("image_maker/static/image_maker/images/result.png", format="png")
 
 
 		title = title_text
-		img = Image.open("result.png")
+		img = Image.open("image_maker/static/image_maker/images/result.png")
 		draw = ImageDraw.Draw(img)
 		font = ImageFont.truetype("image_maker/static/image_maker/fonts/Uni Sans Heavy.otf", 48)
 
