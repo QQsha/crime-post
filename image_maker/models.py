@@ -48,28 +48,28 @@ class Imag(models.Model):
 
 
 		with urllib.request.urlopen(URL) as url:
-		    with open('crime-post/image_maker/static/image_maker/images/back.jpg', 'wb') as f:
+		    with open('/home/crimemoldova/crime-post/image_maker/static/image_maker/images/back.jpg', 'wb') as f:
 		        f.write(url.read())
 
-		ironman = Image.open('image_maker/static/image_maker/images/Crime_Moldova_trans.png', 'r')
-		bg = Image.open('image_maker/static/image_maker/images/back.jpg', 'r')
+		ironman = Image.open('/home/crimemoldova/crime-post/image_maker/static/image_maker/images/Crime_Moldova_trans.png', 'r')
+		bg = Image.open('/home/crimemoldova/crime-post/image_maker/static/image_maker/images/back.jpg', 'r')
 		pb = bg.resize((1368, 627))
 		pp = pb.point(lambda x: x*0.38)
 		text_img = Image.new('RGBA', (1200, 627), (0, 0, 0, 0))
 		text_img.paste(pp, (-84, 0))
 		text_img.paste(ironman, (0, 0), mask=ironman)
-		text_img.save("image_maker/static/image_maker/images/result.png", format="png")
+		text_img.save("/home/crimemoldova/crime-post/image_maker/static/image_maker/images/result.png", format="png")
 
 
 		title = title_text
-		img = Image.open("image_maker/static/image_maker/images/result.png")
+		img = Image.open("/home/crimemoldova/crime-post/image_maker/static/image_maker/images/result.png")
 		draw = ImageDraw.Draw(img)
-		font = ImageFont.truetype("image_maker/static/image_maker/fonts/Uni Sans Heavy.otf", 48)
+		font = ImageFont.truetype("/home/crimemoldova/crime-post/image_maker/static/image_maker/fonts/Uni Sans Heavy.otf", 48)
 
 		text = textwrap.fill(title, width=40)
 
 		draw.multiline_text((100, 357),text, (255,255,255),font=font, align="left", spacing= 20)
-		img.save('image_maker/static/image_maker/images/final_result.png')
+		img.save('/home/crimemoldova/crime-post/image_maker/static/image_maker/images/final_result.png')
 
 
 
