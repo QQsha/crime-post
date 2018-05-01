@@ -48,7 +48,7 @@ class Imag(models.Model):
 
 
 		with urllib.request.urlopen(URL) as url:
-		    with open('image_maker/static/image_maker/images/back.jpg', 'wb') as f:
+		    with open('crime-post/image_maker/static/image_maker/images/back.jpg', 'wb') as f:
 		        f.write(url.read())
 
 		ironman = Image.open('image_maker/static/image_maker/images/Crime_Moldova_trans.png', 'r')
