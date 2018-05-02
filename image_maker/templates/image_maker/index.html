@@ -1,12 +1,22 @@
-
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
-
+<link rel="stylesheet" href="{% static '/image_maker/css/style.css' %}">
+<script src="{% static '/image_maker/js/copy.js' %}"></script>
 	<title></title>
 </head>
 <body>
+	<div >
+	<img src="../../../static/image_maker/images/final_result.png" class="image" width="600px" height="300px">
+	</div>
 
-<img src="../../../static/image_maker/images/final_result.png">
+<div class="clearfix">
+<textarea type="text" value="{{ desc }}" id="descr">{{ desc }}</textarea>
+<button onclick="myFunction()">Copy text</button>
+</div>
+
+
+<p>Go to <a href="https://www.facebook.com/crimemoldova/" target="_blank">facebook.com/crimemoldova</a></p> 
 </body>
 </html>

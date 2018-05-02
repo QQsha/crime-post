@@ -1,0 +1,34 @@
+.image {
+	width: 600px;
+	height: 300px;
+}
+
+#descr {
+	width: 350px;
+	height: 100px;
+	float: left;
+}
+
+#test {
+	color: #FCA205;
+}
+
+button {
+	float: right;
+
+	height: 106px;
+	width: 80px;
+}
+
+.clearfix {
+	margin-top: 20px;
+	height:110px;
+	width: 460px;
+  overflow: auto;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}

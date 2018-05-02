@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw, ImageFont
 import textwrap
 import urllib.request
 import requests
-from bs4 import BeautifulSoup
+import re
 
 # Create your models here.
 class Raw_data(models.Model):
@@ -12,26 +12,27 @@ class Raw_data(models.Model):
 	link = models.TextField()
 
 	def parse(self, slug1, slug2):
-		url = "https://crimemoldova.com/rss/"
-		resp = requests.get(url)
-		soup = BeautifulSoup(resp.content, features='xml')
 
-		items = soup.findAll('item')
+
 		news_url = "https://crimemoldova.com/news/" + slug1 + "/" + slug2 + "/"
-		print(news_url)
-		news_items = []
+		resp = requests.get(news_url)
 
-		for item in items:
-		    if item.link.text == news_url:
-		        news_item = {}
-		        news_item['link'] = item.link.text
-		        news_item['title'] = item.title.text
-		        news_item['image'] = item.enclosure['url']
-		        news_items.append(news_item)
-		        break
-		self.row_title = news_items[0]['title']
-		self.row_link = news_items[0]['link']
-		self.row_image = news_items[0]['image']
+		pattern1 = r'.*class="article-header-pic-img" src="(.*)" alt='
+		pattern2 = r'.*alt="(.*)"'
+		pattern3 = r'.*<b>(.*)</b>'
+
+
+		image_path = re.findall(pattern1, resp.text)
+		full_path = "https://crimemoldova.com" + image_path[0]
+
+		title_text = re.findall(pattern2, resp.text)
+
+		desc = re.findall(pattern3, resp.text)
+
+		self.row_title = title_text[2]
+		self.row_link = news_url
+		self.row_image = full_path
+		self.row_desc = desc[0]
 
 	def __str__(self):
 		return self.title
